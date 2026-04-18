@@ -1,0 +1,12 @@
+.basePageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}

@@ -1,0 +1,32 @@
+.headerContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background-color: #f8f9ff;
+
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.navigateLink {
+}
+
+.navigate {
+}
+
+.link {
+  text-decoration: none;
+  color: #6366f1;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.preLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
