@@ -5,6 +5,7 @@ const PHONE_NAME_SHEMA = 'phone';
 
 const initialState = {
   phones: [],
+  preorders: [],
   isFetching: false,
   error: null,
 };
@@ -45,6 +46,18 @@ export const deletePhoneThunk = createAsyncThunk(
   }
 );
 
+export const getPhonePreordersThunk = createAsyncThunk(
+  `${PHONE_NAME_SHEMA}/get/id/preorder`,
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await API.getOpdersByPhoneId(payload);
+      return data;
+    } catch (err) {
+      return rejectWithValue({ errors: err.response.data });
+    }
+  }
+);
+
 const phoneSlice = createSlice({
   name: PHONE_NAME_SHEMA,
   initialState,
@@ -56,12 +69,10 @@ const phoneSlice = createSlice({
     });
     builder.addCase(getPhoneThunk.fulfilled, (state, { payload }) => {
       state.phones = [...payload];
-      console.log('payload (fulfilled):>> ', payload);
       state.isFetching = false;
     });
     builder.addCase(getPhoneThunk.rejected, (state, { payload }) => {
       state.error = payload;
-      console.log('payload :>> ', payload);
       state.isFetching = false;
     });
 
@@ -91,6 +102,20 @@ const phoneSlice = createSlice({
     builder.addCase(deletePhoneThunk.rejected, (state, { payload }) => {
       state.error = payload;
       state.isFetching = false;
+    });
+
+    // get/id/preorder
+    builder.addCase(getPhonePreordersThunk.pending, state => {
+      state.isFetching = true;
+      state.error = null;
+    });
+    builder.addCase(getPhonePreordersThunk.fulfilled, (state, { payload }) => {
+      state.isFetching = false;
+      state.preorders = [...payload];
+    });
+    builder.addCase(getPhonePreordersThunk.rejected, (state, { payload }) => {
+      state.isFetching = false;
+      state.error = payload;
     });
   },
 });

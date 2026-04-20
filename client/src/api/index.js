@@ -7,3 +7,6 @@ export const getPhones = () => httpClient.get('/phones?page=1&result=100');
 export const createPhone = values => httpClient.post('/phones', values);
 
 export const deletePhone = id => httpClient.delete(`/phones/${id}`);
+
+export const getOpdersByPhoneId = id =>
+  httpClient.get(`/phones/${id}/preorders`);

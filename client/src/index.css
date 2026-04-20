@@ -128,3 +128,18 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f3ef;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #111;
+}
+
+a {
+  color: inherit;
+}
